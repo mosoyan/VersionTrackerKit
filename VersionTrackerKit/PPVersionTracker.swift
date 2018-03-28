@@ -28,10 +28,10 @@ public class AppVersion : NSObject {
     
     fileprivate var versionTrail : [String: Array<String>] = [versionKey: Array<String>(), buildKey: Array<String>()]
     
-    public private(set) var isFirstLaunchEver = false
-    public private(set) var isFirstLaunchForVersion = false
-    public private(set) var isFirstLaunchForBuild = false
-    public var previousVersion : String? {
+    @objc public private(set) var isFirstLaunchEver = false
+    @objc public private(set) var isFirstLaunchForVersion = false
+    @objc public private(set) var isFirstLaunchForBuild = false
+    @objc public var previousVersion : String? {
         get {
             guard let versions = versionTrail[versionKey] else {
                 return nil
@@ -44,16 +44,16 @@ public class AppVersion : NSObject {
         }
     }
     
-    public var firstInstalledVersion : String? {
+    @objc public var firstInstalledVersion : String? {
         return versionTrail[versionKey]?.first
     }
     
-    public private(set) var currentVersion : String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+    @objc public private(set) var currentVersion : String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
     
-    public private(set) var currentBuild : String = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String ?? ""
+    @objc public private(set) var currentBuild : String = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String ?? ""
 
     
-    final class public func start () {
+    @objc final class public func start () {
         _defaultTracker.startVersionTracker();
     }
     
